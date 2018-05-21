@@ -20,6 +20,7 @@
 
 #include "utils.h"
 #include "resource.h"
+#include "MatricesFunctions.h"
 
 #define WINDOW_CLASS_NAME L"WINCLASS1"
 
@@ -129,21 +130,178 @@ LRESULT CALLBACK WindowProc(HWND _hwnd,
 	return (DefWindowProc(_hwnd, _msg, _wparam, _lparam));
 }
 
-BOOL CALLBACK MatrixDlgProc(HWND _hwnd,
-	UINT _msg,
-	WPARAM _wparam,
-	LPARAM _lparam)
+BOOL CALLBACK MatrixDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lparam)
 {
-	static float _value;
+	static float UserInput;											// Stores USer Input
+
+
 	switch (_msg)
 	{
 	case WM_COMMAND:
 	{
 		switch (LOWORD(_wparam))
 		{
-		case IDC_EDIT_A11:
+		//----------Matrix A Input 
+		case MATRIX_A11_INPUT:
 		{
-			_value = ReadFromEditBox(_hwnd, IDC_EDIT_A11);
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A12_INPUT);
+			break;
+		}
+		case MATRIX_A13_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A13_INPUT);
+			break;
+		}
+		case MATRIX_A14_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A14_INPUT);
+			break;
+		}
+		case MATRIX_A21_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A21_INPUT);
+			break;
+		}
+		case MATRIX_A22_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A22_INPUT);
+			break;
+		}
+		case MATRIX_A23_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A23_INPUT);
+			break;
+		}
+		case MATRIX_A24_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A24_INPUT);
+			break;
+		}
+		case MATRIX_A31_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A31_INPUT);
+			break;
+		}
+		case MATRIX_A32_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A32_INPUT);
+			break;
+		}
+		case MATRIX_A33_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A33_INPUT);
+			break;
+		}
+		case MATRIX_A34_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A34_INPUT);
+			break;
+		}
+		case MATRIX_A41_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A41_INPUT);
+			break;
+		}
+		case MATRIX_A42_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A42_INPUT);
+			break;
+		}
+		case MATRIX_A43_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A43_INPUT);
+			break;
+		}
+		case MATRIX_A44_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_A44_INPUT);
+			break;
+		}
+		//----------Matrix B Input
+		case MATRIX_B11_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B11_INPUT);
+			break;
+		}
+		case MATRIX_B12_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B12_INPUT);
+			break;
+		}
+		case MATRIX_B13_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B13_INPUT);
+			break;
+		}
+		case MATRIX_B14_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B14_INPUT);
+			break;
+		}
+		case MATRIX_B21_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B21_INPUT);
+			break;
+		}
+		case MATRIX_B22_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B22_INPUT);
+			break;
+		}
+		case MATRIX_B23_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B23_INPUT);
+			break;
+		}
+		case MATRIX_B24_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B24_INPUT);
+			break;
+		}
+		case MATRIX_B31_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B31_INPUT);
+			break;
+		}
+		case MATRIX_B32_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B32_INPUT);
+			break;
+		}
+		case MATRIX_B33_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B33_INPUT);
+			break;
+		}
+		case MATRIX_B34_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B34_INPUT);
+			break;
+		}
+		case MATRIX_B41_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B41_INPUT);
+			break;
+		}
+		case MATRIX_B42_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B42_INPUT);
+			break;
+		}
+		case MATRIX_B43_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B43_INPUT);
+			break;
+		}
+		case MATRIX_B44_INPUT:
+		{
+			UserInput = ReadFromEditBox(_hwnd, MATRIX_B44_INPUT);
+			break;
+		}
+		//----------Matrix A Buttons
+		case MATRIX_A_SET_IDENTITY:
+		{
+			SetIdentity(_hwnd, MATRIX_A11_INPUT);
 			break;
 		}
 		default:
@@ -154,7 +312,6 @@ BOOL CALLBACK MatrixDlgProc(HWND _hwnd,
 	}
 	case WM_CLOSE:
 	{
-		MessageBox(_hwnd, ToWideString(_value).c_str(), L"Value in A11", MB_OK);
 		ShowWindow(_hwnd, SW_HIDE);
 		return TRUE;
 		break;
