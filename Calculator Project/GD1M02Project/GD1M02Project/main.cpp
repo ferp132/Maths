@@ -147,14 +147,29 @@ BOOL CALLBACK MatrixDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lpara
 			SetIdentity(_hwnd, MATRIX_A11_INPUT);
 			break;
 		}
+		case MATRIX_B_SET_IDENTITY:
+		{
+			SetIdentity(_hwnd, MATRIX_B11_INPUT);
+			break;
+		}
 		case MATRIX_A_DETERMINANT:
 		{
 			Determinant(_hwnd, MATRIX_A11_INPUT);
 			break;
 		}
+		case MATRIX_B_DETERMINANT:
+		{
+			Determinant(_hwnd, MATRIX_B11_INPUT);
+			break;
+		}
 		case MATRIX_A_SCALAR:
 		{
 			Scale(_hwnd, MATRIX_A11_INPUT, ReadFromEditBox(_hwnd, MATRIX_A_SCALAR_INPUT));
+			break;
+		}
+		case MATRIX_B_SCALAR:
+		{
+			Scale(_hwnd, MATRIX_B11_INPUT, ReadFromEditBox(_hwnd, MATRIX_B_SCALAR_INPUT));
 			break;
 		}
 		case MATRIX_A_MULTIPLY_B:
