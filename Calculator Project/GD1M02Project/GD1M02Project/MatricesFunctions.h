@@ -35,8 +35,10 @@ void SetIdentity(HWND hDlg, int Index)
 	return;
 }
 
-float Determinant(HWND hDlg, int Index)
+void Determinant(HWND hDlg, int Index)
 {
+	int SignI[4][4];
+	int sign = 1;
 	float I[4][4];		// Array representing our matrix
 	float Det4;			// The determinant for the matrix
 	float Det3[4];		// Determinants of 3x3 matrices derived from the 4x4 matrix
@@ -46,13 +48,53 @@ float Determinant(HWND hDlg, int Index)
 	{
 		for (int RightIndex = 0; RightIndex < 4; RightIndex++)
 		{
-			I[LeftIndex][RightIndex] = Index + LeftIndex + RightIndex;
+			SignI[LeftIndex][RightIndex] = sign;
+			if (sign > 0) sign = -1;
+			else if (sign < 0) sign = 1;
 		}
 	}
 
-	Det2[1] = I[1][1] * (I[2][2] * I[3][3] - I[2][3] * I[3][2]);
+	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
+	{
+		for (int RightIndex = 0; RightIndex < 4; RightIndex++)
+		{
+			I[LeftIndex][RightIndex] = ReadFromEditBox(hDlg, Index);
+			Index++;
 
+		}
+	}
 
+	//Sub Determinants for Det3[0]
+	Det2[0] = I[1][1] * (I[2][2] * I[3][3] - I[3][2] * I[2][3]);
+	Det2[1] = I[2][1] * (I[1][2] * I[3][3] - I[1][3] * I[3][2]);
+	Det2[2] = I[3][1] * (I[1][2] * I[2][3] - I[2][2] * I[1][3]);
+
+	//Sub Determinants for Det3[1]
+	Det2[3] = I[0][1] * (I[2][2] * I[3][3] - I[3][2] * I[2][3]);
+	Det2[4] = I[2][1] * (I[0][2] * I[3][3] - I[3][2] * I[0][3]);
+	Det2[5] = I[3][1] * (I[0][2] * I[2][3] - I[2][2] * I[0][3]);
+
+	//Sub Determinants for Det3[2]
+	Det2[6] = I[0][1] * (I[1][2] * I[3][3] - I[3][2] * I[1][3]);
+	Det2[7] = I[1][1] * (I[0][2] * I[3][3] - I[3][2] * I[0][3]);
+	Det2[8] = I[3][1] * (I[0][2] * I[1][3] - I[1][2] * I[0][3]);
+
+	//Sub Determinants for Det3[3]
+	Det2[9] = I[0][1] * (I[1][2] * I[2][3] - I[2][2] * I[1][3]);
+	Det2[10] = I[1][1] * (I[0][2] * I[2][3] - I[2][2] * I[0][3]);
+	Det2[11] = I[2][1] * (I[0][2] * I[1][3] - I[1][2] * I[0][3]);
+
+	//Sub Determinants for Det4
+	Det3[0] = I[0][0] *	(Det2[0] - Det2[1] + Det2[2]);
+	Det3[1] = I[1][0] * (Det2[3] - Det2[4] + Det2[5]);
+	Det3[2] = I[2][0] * (Det2[6] - Det2[7] + Det2[8]);
+	Det3[3] = I[3][0] * (Det2[9] - Det2[10] + Det2[11]);
+
+	//Final Determinant
+	Det4 = Det3[0] - Det3[1] + Det3[2] - Det3[3];
+
+	WriteToEditBox(hDlg, MATRIX_A_DETERMINANT_INPUT, Det4);
+	return;
 }
 
 
