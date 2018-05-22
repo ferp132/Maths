@@ -157,6 +157,16 @@ BOOL CALLBACK MatrixDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lpara
 			Scale(_hwnd, MATRIX_A11_INPUT, ReadFromEditBox(_hwnd, MATRIX_A_SCALAR_INPUT));
 			break;
 		}
+		case MATRIX_A_MULTIPLY_B:
+		{
+			MatrixMultiply(_hwnd, MATRIX_A11_INPUT, MATRIX_B11_INPUT);
+			break;
+		}
+		case MATRIX_B_MULTIPLY_A:
+		{
+			MatrixMultiply(_hwnd, MATRIX_B11_INPUT, MATRIX_A11_INPUT);
+			break;
+		}
 		default:
 			break;
 		}

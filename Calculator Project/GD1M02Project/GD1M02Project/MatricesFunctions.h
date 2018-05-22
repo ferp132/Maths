@@ -37,22 +37,10 @@ void SetIdentity(HWND hDlg, int Index)
 
 void Determinant(HWND hDlg, int Index)
 {
-	int SignI[4][4];
-	int sign = 1;
 	float I[4][4];		// Array representing our matrix
 	float Det4;			// The determinant for the matrix
 	float Det3[4];		// Determinants of 3x3 matrices derived from the 4x4 matrix
 	float Det2[12];		// Determinants of 2x2 matrices derived from the 3x3 matrices
-
-	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
-	{
-		for (int RightIndex = 0; RightIndex < 4; RightIndex++)
-		{
-			SignI[LeftIndex][RightIndex] = sign;
-			if (sign > 0) sign = -1;
-			else if (sign < 0) sign = 1;
-		}
-	}
 
 	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
 	{
@@ -105,6 +93,45 @@ void Scale(HWND hDlg, int Index, float Scalar)
 	}
 
 	return;
+}
+
+void MatrixMultiply(HWND hDlg, int FirstIndex, int SecondIndex)
+{
+	float FirstMatrix[4][4];
+	float SecondMatrix[4][4];
+	int ResultMatrixIndex = 1063;
+	float Result = 0;
+
+	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
+	{
+		for (int RightIndex = 0; RightIndex < 4; RightIndex++)
+		{
+			FirstMatrix[LeftIndex][RightIndex] = ReadFromEditBox(hDlg, FirstIndex);
+			FirstIndex++;
+		}
+	}
+	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
+	{
+		for (int RightIndex = 0; RightIndex < 4; RightIndex++)
+		{
+			SecondMatrix[LeftIndex][RightIndex] = ReadFromEditBox(hDlg, SecondIndex);
+			SecondIndex++;
+		}
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
+		{
+			for (int RightIndex = 0; RightIndex < 4; RightIndex++)
+			{
+				Result += FirstMatrix[LeftIndex][RightIndex] * SecondMatrix[RightIndex][LeftIndex];
+			}
+			WriteToEditBox(hDlg, ResultMatrixIndex, Result);
+			ResultMatrixIndex++;
+			Result = 0;
+		}
+	}
 }
 
 
