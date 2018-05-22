@@ -152,6 +152,11 @@ BOOL CALLBACK MatrixDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lpara
 			Determinant(_hwnd, MATRIX_A11_INPUT);
 			break;
 		}
+		case MATRIX_A_SCALAR:
+		{
+			Scale(_hwnd, MATRIX_A11_INPUT, ReadFromEditBox(_hwnd, MATRIX_A_SCALAR_INPUT));
+			break;
+		}
 		default:
 			break;
 		}

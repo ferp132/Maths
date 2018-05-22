@@ -97,5 +97,15 @@ void Determinant(HWND hDlg, int Index)
 	return;
 }
 
+void Scale(HWND hDlg, int Index, float Scalar)
+{
+	for (int i = 0; i < 16; i++)				//1063 = UINT for Resultant matrix 11 position
+	{
+		WriteToEditBox(hDlg, 1063 + i, Scalar * ReadFromEditBox(hDlg, 1031 + i));
+	}
+
+	return;
+}
+
 
 #endif    // __MATRICESFUNCTIONS_H__
