@@ -167,6 +167,16 @@ BOOL CALLBACK MatrixDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lpara
 			MatrixMultiply(_hwnd, MATRIX_B11_INPUT, MATRIX_A11_INPUT);
 			break;
 		}
+		case MATRIX_A_PLUS_B:
+		{
+			MatrixAdd(_hwnd, MATRIX_B11_INPUT, MATRIX_A11_INPUT);
+			break;
+		}
+		case MATRIX_A_MINUS_B:
+		{
+			MatrixMultiply(_hwnd, MATRIX_B11_INPUT, MATRIX_A11_INPUT);
+			break;
+		}
 		default:
 			break;
 		}
