@@ -20,6 +20,38 @@
 // Library Includes
 #include "utils.h"
 
+void MatrixTranspose(HWND hDlg, int FirstIndex, int SecondIndex)
+{
+	float Matrix[4][4];
+	float IdentityMatrix[4][4];
+	int ResultMatrixIndex = 1063;
+	float Result = 0;
+
+	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
+	{
+		for (int RightIndex = 0; RightIndex < 4; RightIndex++)
+		{
+			Matrix[LeftIndex][RightIndex] = ReadFromEditBox(hDlg, FirstIndex);
+			FirstIndex++;
+		}
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
+		{
+			for (int RightIndex = 0; RightIndex < 4; RightIndex++)
+			{
+				Result += Matrix[RightIndex][LeftIndex]; //+ IdentityMatrix[RightIndex][LeftIndex];
+				WriteToEditBox(hDlg, ResultMatrixIndex, Result);
+				ResultMatrixIndex++;
+				Result = 0;
+			}
+
+		}
+	}
+}
+
 void SetIdentity(HWND hDlg, int Index)
 {
 	int Begin = Index;
@@ -35,7 +67,7 @@ void SetIdentity(HWND hDlg, int Index)
 	return;
 }
 
-void Determinant(HWND hDlg, int Index)
+float Determinant(HWND hDlg, int Index)
 {
 	float I[4][4];		// Array representing our matrix
 	float Det4;			// The determinant for the matrix
@@ -81,8 +113,8 @@ void Determinant(HWND hDlg, int Index)
 	//Final Determinant
 	Det4 = Det3[0] - Det3[1] + Det3[2] - Det3[3];
 
-	WriteToEditBox(hDlg, MATRIX_A_DETERMINANT_INPUT, Det4);
-	return;
+	
+	return Det4;
 }
 
 void Scale(HWND hDlg, int Index, float Scalar)
@@ -212,6 +244,111 @@ void MatrixMinus(HWND hDlg, int FirstIndex, int SecondIndex)
 
 		}
 	}
+}
+
+void MatrixMinors(float Matrix[][4], float Minor[][4]) {
+
+	int Collumns3x3Index = 0;
+	int Rows3x3Index = 0;
+	float TempMatrix[3][3];
+	float Det1, Det2, Det3, TempMatrixDet = 0;
+
+	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
+	{
+		for (int RightIndex = 0; RightIndex < 4; RightIndex++)
+		{
+			// Create a 3x3 matrix to take the determinant of
+			for (int Collumns = 0; Collumns < 4; Collumns++)													
+			{																		
+				for (int Rows = 0; Rows < 4; Rows++)
+				{
+					if (!(Collumns == LeftIndex || Rows == RightIndex))
+					{
+						TempMatrix[Collumns3x3Index][Rows3x3Index] = Matrix[LeftIndex][RightIndex];
+					}
+					Rows3x3Index++;
+				}
+				Collumns3x3Index++;
+			} 
+			Det1 = TempMatrix[0][0]		* (TempMatrix[1][1] * TempMatrix[2][2] - TempMatrix[1][2] * TempMatrix[2][1]);
+			Det2 = -TempMatrix[0][1]	* (TempMatrix[0][1] * TempMatrix[2][2] - TempMatrix[2][1] * TempMatrix[0][2]);
+			Det3 = TempMatrix[0][2]		* (TempMatrix[0][1] * TempMatrix[1][2] - TempMatrix[1][1] * TempMatrix[0][2]);
+
+			TempMatrixDet = (Det1 + Det2 + Det3);
+			Minor[LeftIndex][RightIndex] = TempMatrixDet;
+		}
+	}
+}
+
+void FindCofactor(float Minor[][4], float Cofactor[][4]) {
+	float sign[4][4] = {{1, -1, 1, -1},
+						{-1, 1, -1, 1},
+						{1, -1, 1, -1},
+						{-1, 1, -1, 1} };
+
+	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
+	{
+		for (int RightIndex = 0; RightIndex < 4; RightIndex++)
+		{
+			Cofactor[LeftIndex][RightIndex] = Minor[LeftIndex][RightIndex] * sign[LeftIndex][RightIndex];
+			
+		}
+	}
+}
+
+void Inverse(HWND hDlg, int OriginalIndex)
+{
+	float Matrix[4][4], Minor[4][4], Cofactor[4][4], Transpose[4][4], Inverse[4][4];
+	int Index = OriginalIndex;
+	
+	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
+	{
+		for (int RightIndex = 0; RightIndex < 4; RightIndex++)
+		{
+			Matrix[LeftIndex][RightIndex] = ReadFromEditBox(hDlg, Index);
+			Index++;
+		}
+	}
+	Index = OriginalIndex;
+
+	MatrixMinors(Matrix, Minor);
+	FindCofactor(Minor, Cofactor);
+	float Det = Determinant( hDlg, Index);
+
+	//Transpose
+	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
+	{
+		for (int RightIndex = 0; RightIndex < 4; RightIndex++)
+		{
+			Transpose[RightIndex][LeftIndex] = Cofactor[LeftIndex][RightIndex];
+		}
+	}
+
+	
+	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
+	{
+		for (int RightIndex = 0; RightIndex < 4; RightIndex++)
+		{
+
+			Inverse[LeftIndex][RightIndex] = 1/Det * Transpose[LeftIndex][RightIndex];
+			
+		}
+	}
+
+	
+
+	Index = 1063;
+	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
+	{
+		for (int RightIndex = 0; RightIndex < 4; RightIndex++)
+		{
+			 WriteToEditBox(hDlg, Index, Cofactor[LeftIndex][RightIndex]);
+			Index++;
+		}
+	}
+
+
+
 }
 
 

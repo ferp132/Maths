@@ -154,12 +154,14 @@ BOOL CALLBACK MatrixDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lpara
 		}
 		case MATRIX_A_DETERMINANT:
 		{
-			Determinant(_hwnd, MATRIX_A11_INPUT);
+			float Det = Determinant(_hwnd, MATRIX_A11_INPUT);
+			WriteToEditBox(_hwnd, MATRIX_A_DETERMINANT_INPUT, Det);
 			break;
 		}
 		case MATRIX_B_DETERMINANT:
 		{
-			Determinant(_hwnd, MATRIX_B11_INPUT);
+			float Det = Determinant(_hwnd, MATRIX_B11_INPUT);
+			WriteToEditBox(_hwnd, MATRIX_A_DETERMINANT_INPUT, Det);
 			break;
 		}
 		case MATRIX_A_SCALAR:
@@ -190,6 +192,16 @@ BOOL CALLBACK MatrixDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lpara
 		case MATRIX_A_MINUS_B:
 		{
 			MatrixMultiply(_hwnd, MATRIX_B11_INPUT, MATRIX_A11_INPUT);
+			break;
+		}
+		case MATRIX_A_INVERSE:
+		{
+			Inverse(_hwnd, MATRIX_A11_INPUT);
+			break;
+		}
+		case MATRIX_B_INVERSE:
+		{
+			Inverse(_hwnd, MATRIX_B11_INPUT);
 			break;
 		}
 		default:
