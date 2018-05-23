@@ -253,23 +253,32 @@ void MatrixMinors(float Matrix[][4], float Minor[][4]) {
 	float TempMatrix[3][3];
 	float Det1, Det2, Det3, TempMatrixDet = 0;
 
+
 	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
 	{
 		for (int RightIndex = 0; RightIndex < 4; RightIndex++)
 		{
 			// Create a 3x3 matrix to take the determinant of
-			for (int Collumns = 0; Collumns < 4; Collumns++)													
-			{																		
+			for (int Collumns = 0; Collumns < 4; Collumns++)
+			{
 				for (int Rows = 0; Rows < 4; Rows++)
 				{
 					if (!(Collumns == LeftIndex || Rows == RightIndex))
 					{
 						TempMatrix[Collumns3x3Index][Rows3x3Index] = Matrix[LeftIndex][RightIndex];
+
+						Rows3x3Index++;
+						if (Rows3x3Index == 2) {
+							Rows3x3Index = 0;
+							Collumns3x3Index++;
+							if (Collumns3x3Index == 3) Collumns3x3Index = 0;
+						}
 					}
-					Rows3x3Index++;
 				}
-				Collumns3x3Index++;
-			} 
+			}
+		
+	
+
 			Det1 = TempMatrix[0][0]		* (TempMatrix[1][1] * TempMatrix[2][2] - TempMatrix[1][2] * TempMatrix[2][1]);
 			Det2 = -TempMatrix[0][1]	* (TempMatrix[0][1] * TempMatrix[2][2] - TempMatrix[2][1] * TempMatrix[0][2]);
 			Det3 = TempMatrix[0][2]		* (TempMatrix[0][1] * TempMatrix[1][2] - TempMatrix[1][1] * TempMatrix[0][2]);
@@ -300,6 +309,13 @@ void Inverse(HWND hDlg, int OriginalIndex)
 {
 	float Matrix[4][4], Minor[4][4], Cofactor[4][4], Transpose[4][4], Inverse[4][4];
 	int Index = OriginalIndex;
+
+	float Det = Determinant(hDlg, Index);
+	if (Det == 0) {
+		MessageBox(hDlg, L"Determinant is 0, No inverse", L"Error", MB_OK);
+		return;
+	}
+
 	
 	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
 	{
@@ -313,7 +329,7 @@ void Inverse(HWND hDlg, int OriginalIndex)
 
 	MatrixMinors(Matrix, Minor);
 	FindCofactor(Minor, Cofactor);
-	float Det = Determinant( hDlg, Index);
+	
 
 	//Transpose
 	for (int LeftIndex = 0; LeftIndex < 4; LeftIndex++)
