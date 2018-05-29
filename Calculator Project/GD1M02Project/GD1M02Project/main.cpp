@@ -21,6 +21,7 @@
 #include "utils.h"
 #include "resource.h"
 #include "MatricesFunctions.h"
+#include "QuaternionFunctions.h"
 
 #define WINDOW_CLASS_NAME L"WINCLASS1"
 
@@ -139,9 +140,11 @@ BOOL CALLBACK MatrixDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lpara
 	{
 	case WM_COMMAND:
 	{
+	
 		switch (LOWORD(_wparam))
 		{
-		//----------Matrix A Buttons
+		#pragma region Matrices Button Cases
+		
 		case MATRIX_A_SET_IDENTITY:
 		{
 			SetIdentity(_hwnd, MATRIX_A11_INPUT);
@@ -204,6 +207,7 @@ BOOL CALLBACK MatrixDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lpara
 			Inverse(_hwnd, MATRIX_B11_INPUT);
 			break;
 		}
+	#pragma endregion
 		default:
 			break;
 		}
@@ -272,6 +276,72 @@ BOOL CALLBACK QuaternionDlgProc(HWND _hwnd,
 
 	switch (_msg)
 	{
+	case WM_COMMAND:
+	{
+		switch (LOWORD(_wparam))
+		{
+			#pragma region Quaternions Button Cases
+		case QUAT_A_PLUS_B:
+		{
+			QuatAddition(_hwnd);
+			break;
+		}
+		case QUAT_A_MINUS_B:
+		{
+
+		}
+		case QUAT_B_MINUS_A:
+		{
+
+		}
+		case QUAT_A_TIMES_B:
+		{
+
+		}
+		case QUAT_B_TIMES_A:
+		{
+
+		}
+		case QUAT_A_DOT_B:
+		{
+
+		}
+		case QUAT_A_CON:
+		{
+
+		}
+		case QUAT_B_CON:
+		{
+
+		}
+		case QUAT_A_MAG:
+		{
+
+		}
+		case QUAT_B_MAG:
+		{
+
+		}
+		case QUAT_A_INV:
+		{
+
+		}
+		case QUAT_B_INV:
+		{
+
+		}
+		case QUAT_T_SCALE_A:
+		{
+
+		}
+		case QUAT_T_SCALE_B:
+		{
+
+		}
+#pragma endregion
+		}
+	break;
+	}
 	case WM_CLOSE:
 	{
 		ShowWindow(_hwnd, SW_HIDE);
