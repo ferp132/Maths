@@ -288,19 +288,23 @@ BOOL CALLBACK QuaternionDlgProc(HWND _hwnd,
 		}
 		case QUAT_A_MINUS_B:
 		{
-
+			QuatSubtract(_hwnd, QUAT_A, QUAT_B);
+			break;
 		}
 		case QUAT_B_MINUS_A:
 		{
-
+			QuatSubtract(_hwnd, QUAT_B, QUAT_A);
+			break;
 		}
 		case QUAT_A_TIMES_B:
 		{
-
+			QuatMultiply(_hwnd, QUAT_A, QUAT_B);
+			break;
 		}
 		case QUAT_B_TIMES_A:
 		{
-
+			QuatMultiply(_hwnd, QUAT_B, QUAT_A);
+			break;
 		}
 		case QUAT_A_DOT_B:
 		{

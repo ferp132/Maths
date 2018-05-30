@@ -6,12 +6,19 @@
 //-----Library Includes
 #include "utils.h"
 
-enum QUATS
+enum QUATINDEXES
 {
 	QUAT_A		= 2201,
 	QUAT_B		= 2205,
 	QUAT_R		= 2224,
 	QUAT_SCALAR = 2220,
+};
+enum QUATS
+{
+	I = 0,
+	J = 1,
+	K = 2,
+	R = 3,
 };
 
 void QuatAddition	(HWND hDlg);
