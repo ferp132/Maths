@@ -22,6 +22,7 @@
 #include "resource.h"
 #include "MatricesFunctions.h"
 #include "QuaternionFunctions.h"
+#include "GaussFunctions.h"
 
 #define WINDOW_CLASS_NAME L"WINCLASS1"
 
@@ -247,14 +248,47 @@ BOOL CALLBACK TransformationDlgProc(HWND _hwnd,
 }
 
 
-BOOL CALLBACK GaussianDlgProc(HWND _hwnd,
-	UINT _msg,
-	WPARAM _wparam,
-	LPARAM _lparam)
+BOOL CALLBACK GaussianDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lparam)
 {
 
 	switch (_msg)
 	{
+	case WM_COMMAND:
+	{
+		switch (LOWORD(_wparam))
+		{
+#pragma region Gaussian Button Cases
+		case GAUSS_APPLY_MULTIPLY:
+		{
+			int Row = ReadFromEditBox(_hwnd, GAUSS_MULTIPLY);
+
+			if		(Row == 1 || Row == R1) GaussMultiply(_hwnd, R1);
+			else if (Row == 2 || Row == R2) GaussMultiply(_hwnd, R2);
+			else							GaussMultiply(_hwnd, R3);
+
+			break;
+		}
+		case GAUSS_APPLY_SWAP:
+		{
+			int RowA = ReadFromEditBox(_hwnd, GAUSS_SWAP_RA);
+			int RowB = ReadFromEditBox(_hwnd, GAUSS_SWAP_RB);
+
+			if (RowA == 1 || Row == R1) GaussMultiply(_hwnd, R1);
+			else if (Row == 2 || Row == R2) GaussMultiply(_hwnd, R2);
+			else							GaussMultiply(_hwnd, R3);
+
+			break;
+			break;
+		}
+		case GAUSS_APPLY_ADD:
+		{
+
+			break;
+		}
+#pragma endregion
+		}
+		break;
+	}
 	case WM_CLOSE:
 	{
 		ShowWindow(_hwnd, SW_HIDE);
@@ -268,10 +302,7 @@ BOOL CALLBACK GaussianDlgProc(HWND _hwnd,
 }
 
 
-BOOL CALLBACK QuaternionDlgProc(HWND _hwnd,
-	UINT _msg,
-	WPARAM _wparam,
-	LPARAM _lparam)
+BOOL CALLBACK QuaternionDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lparam)
 {
 
 	switch (_msg)

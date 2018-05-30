@@ -179,7 +179,29 @@
 #define QUAT_RESULT_J                   2225
 #define QUAT_RESULT_K                   2226
 #define QUAT_RESULT_R                   2227
-#define ID_CALCULATOR_MATRIX            40001
+#define GAUSS_R1_A11                    1301
+#define GAUSS_R1_A12                    1302
+#define GAUSS_R1_A13                    1303
+#define GAUSS_R1_B1                     1304
+#define GAUSS_R2_A21                    1305
+#define GAUSS_R2_A22                    1306
+#define GAUSS_R2_A23                    1307
+#define GAUSS_R2_B2                     1308
+#define GAUSS_R3_A31                    1309
+#define GAUSS_R3_A32                    1310
+#define GAUSS_R3_A33                    1311
+#define GAUSS_R3_B3                     1312
+#define GAUSS_MULTIPLY                  1313
+#define GAUSS_MULTIPLY_SCALAR           1314
+#define GAUSS_SWAP_RA                   1315
+#define GAUSS_SWAP_RB                   1316
+#define GAUSS_ADD_SCALAR                1317
+#define GAUSS_ADD_RA                    1318
+#define GAUSS_ADD_RB                    1319
+#define GAUSS_APPLY_MULTIPLY            1320
+#define GAUSS_APPLY_SWAP                1321
+#define GAUSS_APPLY_ADD                 1322
+#define ID_CALCULATOR_MATRIX            40021
 #define ID_CALCULATOR_TRANSFORMATION    40002
 #define ID_CALCULATOR_GAUSIIAN          40003
 #define ID_CALCULATOR_QUATERNION        40004
@@ -191,9 +213,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        103
+#define _APS_NEXT_RESOURCE_VALUE        104
 #define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1043
+#define _APS_NEXT_CONTROL_VALUE         1064
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
