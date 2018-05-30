@@ -25,9 +25,10 @@ void QuatAddition	(HWND hDlg);
 void QuatDot		(HWND hDlg);
 void QuatSubtract	(HWND hDlg, int Quat1Index, int Quat2Index);
 void QuatMultiply	(HWND hDlg, int Quat1Index, int Quat2Index);
+void QuatScale		(HWND hDlg, int QuatIndex);
 void QuatConjugate	(HWND hDlg, int QuatIndex);
 void QuatMagnitude	(HWND hDlg, int QuatIndex);
 void QuatInverse	(HWND hDlg, int QuatIndex);
-void QuatScale		(HWND hDlg, int QuatIndex);
+
 
 #endif    // __QUATERNIONFUNCTIONS_H__

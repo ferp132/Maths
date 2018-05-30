@@ -308,7 +308,8 @@ BOOL CALLBACK QuaternionDlgProc(HWND _hwnd,
 		}
 		case QUAT_A_DOT_B:
 		{
-
+			QuatDot(_hwnd);
+			break;
 		}
 		case QUAT_A_CON:
 		{
@@ -322,27 +323,33 @@ BOOL CALLBACK QuaternionDlgProc(HWND _hwnd,
 		}
 		case QUAT_A_MAG:
 		{
-
+			QuatMagnitude(_hwnd, QUAT_A);
+			break;
 		}
 		case QUAT_B_MAG:
 		{
-
+			QuatMagnitude(_hwnd, QUAT_B);
+			break;
 		}
 		case QUAT_A_INV:
 		{
-
+			QuatInverse(_hwnd, QUAT_A);
+			break;
 		}
 		case QUAT_B_INV:
 		{
-
+			QuatInverse(_hwnd, QUAT_B);
+			break;
 		}
 		case QUAT_T_SCALE_A:
 		{
-
+			QuatScale(_hwnd, QUAT_A);
+			break;
 		}
 		case QUAT_T_SCALE_B:
 		{
-
+			QuatScale(_hwnd, QUAT_B);
+			break;
 		}
 #pragma endregion
 		}
