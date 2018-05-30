@@ -312,11 +312,13 @@ BOOL CALLBACK QuaternionDlgProc(HWND _hwnd,
 		}
 		case QUAT_A_CON:
 		{
-
+			QuatConjugate(_hwnd, QUAT_A);
+			break;
 		}
 		case QUAT_B_CON:
 		{
-
+			QuatConjugate(_hwnd, QUAT_B);
+			break;
 		}
 		case QUAT_A_MAG:
 		{

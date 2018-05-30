@@ -91,6 +91,10 @@ void QuatMultiply	(HWND hDlg, int Quat1Index, int Quat2Index)
 }
 void QuatConjugate	(HWND hDlg, int QuatIndex)
 {
+	for (int IJKR = 0; IJKR < 4; IJKR++)
+	{
+		WriteToEditBox(hDlg, QUAT_R + IJKR, -ReadFromEditBox(hDlg, QuatIndex + IJKR));
+	}
 }
 void QuatMagnitude	(HWND hDlg, int QuatIndex)
 {
