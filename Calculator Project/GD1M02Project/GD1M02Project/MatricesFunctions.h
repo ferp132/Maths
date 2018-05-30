@@ -1,17 +1,3 @@
-//
-// Bachelor of Software Engineering
-// Media Design School
-// Auckland
-// New Zealand
-//
-// (c) 2018 Media Design School
-//
-// File Name	: 
-// Description	: 
-// Author		: Your Name
-// Mail			: your.name@mediadesign.school.nz
-//
-
 #pragma once
 
 #if !defined(__MATRICESFUNCTIONS_H__)
@@ -23,7 +9,6 @@
 void MatrixTranspose(HWND hDlg, int FirstIndex, int SecondIndex)
 {
 	float Matrix[4][4];
-	float IdentityMatrix[4][4];
 	int ResultMatrixIndex = 1063;
 	float Result = 0;
 
@@ -42,7 +27,7 @@ void MatrixTranspose(HWND hDlg, int FirstIndex, int SecondIndex)
 		{
 			for (int RightIndex = 0; RightIndex < 4; RightIndex++)
 			{
-				Result += Matrix[RightIndex][LeftIndex]; //+ IdentityMatrix[RightIndex][LeftIndex];
+				Result += Matrix[RightIndex][LeftIndex];
 				WriteToEditBox(hDlg, ResultMatrixIndex, Result);
 				ResultMatrixIndex++;
 				Result = 0;
