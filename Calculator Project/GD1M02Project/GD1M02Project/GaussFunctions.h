@@ -28,5 +28,7 @@ void	GaussSwap			(HWND hDlg, int RowIndex1, int RowIndex2);	//-----swap the valu
 void	GaussAdd			(HWND hDlg, int RowIndex1, int RowIndex2);	//-----Multiply a Row By a number and add it to another row
 void	GaussEchelonCheck	(HWND hDlg);
 int		RowCheck			(HWND hDlg, int RowBox);
+bool	ReducedRowECheck	(HWND hDlg);
+bool	RowECheck			(HWND hDlg);
 
 #endif    // __GAUSSFUNCTIONS_H__

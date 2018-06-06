@@ -46,7 +46,9 @@ void GaussAdd(HWND hDlg, int RowIndex1, int RowIndex2)
 
 void GaussEchelonCheck(HWND hDlg)
 {
-
+	if		(ReducedRowECheck(hDlg))	MessageBox(hDlg, L"Augmented Matrix is in Reduced-Row-Echelon Form",	L"Gaussian Results", MB_OK);
+	else if (RowECheck(hDlg))			MessageBox(hDlg, L"Augmented Matrix is in Row-Echelon Form",			L"Gaussian Results", MB_OK);
+	return;
 }
 
 int RowCheck(HWND hDlg, int RowBox)
@@ -58,4 +60,32 @@ int RowCheck(HWND hDlg, int RowBox)
 	else										RowIndex = R3;
 
 	return RowIndex;
+}
+
+bool RowECheck(HWND hDlg)
+{
+	bool Result = false;
+
+		if (ReadFromEditBox(hDlg, R1) > 0 
+			&& ReadFromEditBox(hDlg, R2 + 1)	> 0 
+			&& ReadFromEditBox(hDlg, R2 + 3)	> 0
+			&& ReadFromEditBox(hDlg, R2)		== 0
+			&& ReadFromEditBox(hDlg, R3)		== 0
+			&& ReadFromEditBox(hDlg, R3 + 1)	== 0)				Result = true;
+		else														Result = false;
+	return Result;
+}
+
+bool ReducedRowECheck(HWND hDlg)
+{
+	bool Result = false;
+
+	if (ReadFromEditBox(hDlg, R1)			== 1
+		&& ReadFromEditBox(hDlg, R2 + 1)	== 1
+		&& ReadFromEditBox(hDlg, R2 + 3)	== 1
+		&& ReadFromEditBox(hDlg, R2)		== 0
+		&& ReadFromEditBox(hDlg, R3)		== 0
+		&& ReadFromEditBox(hDlg, R3 + 1)	== 0)				Result = true;
+	else														Result = false;
+	return Result;
 }
