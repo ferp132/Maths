@@ -45,4 +45,5 @@ void GaussAdd(HWND hDlg, int RowIndex1, int RowIndex2)
 
 void GaussEchelonCheck(HWND hDlg)
 {
+
 }

@@ -272,12 +272,8 @@ BOOL CALLBACK GaussianDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lpa
 		{
 			int RowA = ReadFromEditBox(_hwnd, GAUSS_SWAP_RA);
 			int RowB = ReadFromEditBox(_hwnd, GAUSS_SWAP_RB);
-
-			if (RowA == 1 || Row == R1) GaussMultiply(_hwnd, R1);
-			else if (Row == 2 || Row == R2) GaussMultiply(_hwnd, R2);
-			else							GaussMultiply(_hwnd, R3);
-
-			break;
+			
+			GaussSwap(_hwnd, RowA, RowB);
 			break;
 		}
 		case GAUSS_APPLY_ADD:
