@@ -16,6 +16,7 @@ void GaussMultiply(HWND hDlg, int RowIndex)
 
 void GaussSwap(HWND hDlg, int RowIndex1, int RowIndex2)
 {
+	
 	float TempRow[4];
 
 	for (int Col = 0; Col < 4; Col++)
@@ -46,4 +47,15 @@ void GaussAdd(HWND hDlg, int RowIndex1, int RowIndex2)
 void GaussEchelonCheck(HWND hDlg)
 {
 
+}
+
+int RowCheck(HWND hDlg, int RowBox)
+{
+	int RowIndex = ReadFromEditBox(hDlg, RowBox);
+
+	if		(RowIndex == 1 || RowIndex == R1)	RowIndex = R1;
+	else if (RowIndex == 2 || RowIndex == R2)	RowIndex = R2;
+	else										RowIndex = R3;
+
+	return RowIndex;
 }

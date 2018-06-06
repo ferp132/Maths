@@ -23,9 +23,10 @@ enum GAUSSINDEXES
 	R3		= 1309
 };
 
-void GaussMultiply		(HWND hDlg, int RowIndex);					//-----Multiply one row with a Scalar
-void GaussSwap			(HWND hDlg, int RowIndex1, int RowIndex2);	//-----swap the values of two rows.
-void GaussAdd			(HWND hDlg, int RowIndex1, int RowIndex2);	//-----Multiply a Row By a number and add it to another row
-void GaussEchelonCheck	(HWND hDlg);
+void	GaussMultiply		(HWND hDlg, int RowIndex);					//-----Multiply one row with a Scalar
+void	GaussSwap			(HWND hDlg, int RowIndex1, int RowIndex2);	//-----swap the values of two rows.
+void	GaussAdd			(HWND hDlg, int RowIndex1, int RowIndex2);	//-----Multiply a Row By a number and add it to another row
+void	GaussEchelonCheck	(HWND hDlg);
+int		RowCheck			(HWND hDlg, int RowBox);
 
 #endif    // __GAUSSFUNCTIONS_H__

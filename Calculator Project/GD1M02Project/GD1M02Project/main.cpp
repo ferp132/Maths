@@ -260,20 +260,12 @@ BOOL CALLBACK GaussianDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lpa
 #pragma region Gaussian Button Cases
 		case GAUSS_APPLY_MULTIPLY:
 		{
-			int Row = ReadFromEditBox(_hwnd, GAUSS_MULTIPLY);
-
-			if		(Row == 1 || Row == R1) GaussMultiply(_hwnd, R1);
-			else if (Row == 2 || Row == R2) GaussMultiply(_hwnd, R2);
-			else							GaussMultiply(_hwnd, R3);
-
+			GaussMultiply(_hwnd, RowCheck(_hwnd, GAUSS_MULTIPLY));
 			break;
 		}
 		case GAUSS_APPLY_SWAP:
 		{
-			int RowA = ReadFromEditBox(_hwnd, GAUSS_SWAP_RA);
-			int RowB = ReadFromEditBox(_hwnd, GAUSS_SWAP_RB);
-			
-			GaussSwap(_hwnd, RowA, RowB);
+			GaussSwap(_hwnd, RowCheck(_hwnd, GAUSS_SWAP_RA), RowCheck(_hwnd, GAUSS_SWAP_RB));
 			break;
 		}
 		case GAUSS_APPLY_ADD:
