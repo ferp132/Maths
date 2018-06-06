@@ -1,6 +1,6 @@
 #include "GaussFunctions.h"
 
-void GaussMultiply(HWND hDlg, int RowIndex)
+void	GaussMultiply(HWND hDlg, int RowIndex)
 {
 	float Row[4];
 	float Scalar = ReadFromEditBox(hDlg, MSCALAR);
@@ -14,7 +14,7 @@ void GaussMultiply(HWND hDlg, int RowIndex)
 	GaussEchelonCheck(hDlg);
 }
 
-void GaussSwap(HWND hDlg, int RowIndex1, int RowIndex2)
+void	GaussSwap(HWND hDlg, int RowIndex1, int RowIndex2)
 {
 	
 	float TempRow[4];
@@ -29,7 +29,7 @@ void GaussSwap(HWND hDlg, int RowIndex1, int RowIndex2)
 	GaussEchelonCheck(hDlg);
 }
 
-void GaussAdd(HWND hDlg, int RowIndex1, int RowIndex2)
+void	GaussAdd(HWND hDlg, int RowIndex1, int RowIndex2)
 {
 	float RowScaled[4], RowTemp[4];
 	float Scalar = ReadFromEditBox(hDlg, ASCALAR);
@@ -44,14 +44,14 @@ void GaussAdd(HWND hDlg, int RowIndex1, int RowIndex2)
 	GaussEchelonCheck(hDlg);
 }
 
-void GaussEchelonCheck(HWND hDlg)
+void	GaussEchelonCheck(HWND hDlg)
 {
 	if		(ReducedRowECheck(hDlg))	MessageBox(hDlg, L"Augmented Matrix is in Reduced-Row-Echelon Form",	L"Gaussian Results", MB_OK);
 	else if (RowECheck(hDlg))			MessageBox(hDlg, L"Augmented Matrix is in Row-Echelon Form",			L"Gaussian Results", MB_OK);
 	return;
 }
 
-int RowCheck(HWND hDlg, int RowBox)
+int		RowCheck(HWND hDlg, int RowBox)
 {
 	int RowIndex = ReadFromEditBox(hDlg, RowBox);
 
@@ -62,7 +62,7 @@ int RowCheck(HWND hDlg, int RowBox)
 	return RowIndex;
 }
 
-bool RowECheck(HWND hDlg)
+bool	RowECheck(HWND hDlg)
 {
 	bool Result = false;
 
@@ -76,7 +76,7 @@ bool RowECheck(HWND hDlg)
 	return Result;
 }
 
-bool ReducedRowECheck(HWND hDlg)
+bool	ReducedRowECheck(HWND hDlg)
 {
 	bool Result = false;
 
