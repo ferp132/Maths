@@ -270,7 +270,7 @@ BOOL CALLBACK GaussianDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lpa
 		}
 		case GAUSS_APPLY_ADD:
 		{
-
+			GaussAdd(_hwnd, RowCheck(_hwnd, GAUSS_ADD_RA), RowCheck(_hwnd, GAUSS_ADD_RB));
 			break;
 		}
 #pragma endregion
