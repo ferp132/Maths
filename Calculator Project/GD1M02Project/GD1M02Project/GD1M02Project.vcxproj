@@ -143,6 +143,7 @@
     <ClInclude Include="MatricesFunctions.h" />
     <ClInclude Include="QuaternionFunctions.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SLERPFunctions.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +153,7 @@
     <ClCompile Include="GaussFunctions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="QuaternionFunctions.cpp" />
+    <ClCompile Include="SLERPFunctions.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
