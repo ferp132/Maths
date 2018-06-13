@@ -23,6 +23,7 @@
 #include "MatricesFunctions.h"
 #include "QuaternionFunctions.h"
 #include "GaussFunctions.h"
+#include "SLERPFunctions.h"
 
 #define WINDOW_CLASS_NAME L"WINCLASS1"
 
@@ -386,14 +387,37 @@ BOOL CALLBACK QuaternionDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _l
 	return FALSE;
 }
 
-BOOL CALLBACK SLERPDlgProc(HWND _hwnd,
-	UINT _msg,
-	WPARAM _wparam,
-	LPARAM _lparam)
+BOOL CALLBACK SLERPDlgProc(HWND _hwnd, UINT _msg, WPARAM _wparam, LPARAM _lparam)
 {
-
 	switch (_msg)
 	{
+	case WM_COMMAND:
+	{
+		switch (LOWORD(_wparam))
+		{
+		case SLERP_ABT_COMPUTE:
+		{
+			SLERPComputeABT(_hwnd);
+			break;
+		}
+		case SLERP_CONVERT_A:
+		{
+			SLERPConvertToMatrix(_hwnd, QUATA);
+			break;
+		}
+		case SLERP_CONVERT_B:
+		{
+			SLERPConvertToMatrix(_hwnd, QUATB);
+			break;
+		}
+		case SLERP_CONVERT_ABT:
+		{
+			SLERPConvertToMatrix(_hwnd, QUATABT);
+			break;
+		}
+	}	
+	break;
+	}
 	case WM_CLOSE:
 	{
 		ShowWindow(_hwnd, SW_HIDE);
